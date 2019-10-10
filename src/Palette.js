@@ -6,8 +6,12 @@ class Palette extends Component {
 
     render(){
         return (
-            <div>
-                <h1> Palette Component</h1>
+            <div className="Palette">
+                {/* navbar goes here */}
+                <div className="Palette-colors">
+                {/* color boxes go here */}
+                </div>
+                {/* footer goes here  */}
             </div>
         );
     }
