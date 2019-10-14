@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import Slider, { Range } from 'rc-slider';
-// We can just import Slider or Range to reduce bundle size
-// import Slider from 'rc-slider/lib/Slider';
-// import Range from 'rc-slider/lib/Range';
+import Select from '@material-ui/core/Select';
 import 'rc-slider/assets/index.css';
 import './NavBar.css';
+import { MenuItem } from '@material-ui/core';
 
 class NavBar extends Component{
-
-
+    constructor(props){
+        super(props)
+        this.state={
+            format:"hex"
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(e){
+        this.setState({
+            format:e.target.value
+        });
+        this.props.handleChange(e.target.value)
+    }
     render(){
-        const { level,changeLevel}= this.props;
+        const { level,changeLevel,handleChange}= this.props;
+        const { format }= this.state;
         return(
             <header className="Navbar">
                 <div className="logo">
@@ -26,7 +37,13 @@ class NavBar extends Component{
                             onAfterChange={changeLevel} />
                     </div>
                 </div>
-               
+                <div className="select-container">
+                    <Select  value={format}onChange={this.handleChange}>
+                    <MenuItem value="hex">HEX- #ffffff</MenuItem> 
+                    <MenuItem value="rgb">RGB -(255,255,255)</MenuItem> 
+                    <MenuItem value="rgba">RGBA -(255,255,255,1.0)</MenuItem> 
+                    </Select>
+                </div>
             </header>   
         )
     }
