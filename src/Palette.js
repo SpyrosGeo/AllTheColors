@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
-import Slider, { Range } from 'rc-slider';
-// We can just import Slider or Range to reduce bundle size
-// import Slider from 'rc-slider/lib/Slider';
-// import Range from 'rc-slider/lib/Range';
-import 'rc-slider/assets/index.css';
 import "./Palette.css"
+import NavBar from './NavBar';
+
 
 class Palette extends Component {
 
@@ -31,14 +28,8 @@ class Palette extends Component {
         ))
         return (
             <div className="Palette">
+                <NavBar level={level} changeLevel={this.changeLevel} />
                 {/* navbar goes here */}
-                <div className="slider">
-                <Slider  defaultValue={level} 
-                min={100} 
-                max={900}
-                step={100} 
-                onAfterChange={this.changeLevel}/>
-                </div>
                 <div className="Palette-colors">
                 {/* color boxes go here */}
                 {colorboxes}
