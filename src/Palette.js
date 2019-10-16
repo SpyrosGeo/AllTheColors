@@ -27,7 +27,7 @@ class Palette extends Component {
         })
     }
     render(){
-        const { colors } = this.props.palette;
+        const { colors,paletteName} = this.props.palette;
         const { level,format } = this.state;
         const colorboxes = colors[level].map(color =>(
             <ColorBox background={color[format]} name={color.name} />
@@ -35,12 +35,14 @@ class Palette extends Component {
         return (
             <div className="Palette">
                 <NavBar level={level} changeLevel={this.changeLevel} handleChange={this.changeFormat} />
-                {/* navbar goes here */}
+                
                 <div className="Palette-colors">
                 {/* color boxes go here */}
                 {colorboxes}
                 </div>
-                {/* footer goes here  */}
+                <footer className="Palette-footer">
+                    {paletteName}
+                </footer>
             </div>
         );
     }
