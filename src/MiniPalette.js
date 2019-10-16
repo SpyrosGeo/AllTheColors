@@ -34,7 +34,6 @@ const styles={
 function MiniPalette(props ){
     const { classes,paletteName }= props;
     return(
-    
         <div className={classes.root}>
             <div className={classes.colors}>
             </div>
