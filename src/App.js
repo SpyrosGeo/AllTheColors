@@ -4,6 +4,7 @@ import Palette from './Palette';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelper';
 import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
 
 class App extends React.Component {
   findPalette(id){
@@ -16,15 +17,20 @@ class App extends React.Component {
     return (
       <Switch>
         <Route exact path="/" render={()=> <PaletteList  palettes={seedColors}/>} />
-    <Route exact path="/palette/:id" render={routeProps =><Palette  palette={generatePalette(
+        <Route exact path="/palette/:id" render={routeProps =><Palette palette={generatePalette(
       this.findPalette(routeProps.match.params.id)
           )}
         /> 
       }/>
+      {/* <Route 
+        exact
+        path="/palette/:id/:colorId" 
+        render={()=>
+          <SingleColorPalette />
+        }
+        /> */}
       </Switch>
-      // <div >
-      //     <Palette palette={generatePalette(seedColors[4])}/>
-      // </div>
+      
     );
   }
 }
