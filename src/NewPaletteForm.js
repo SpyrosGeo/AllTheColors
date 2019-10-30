@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
+import DraggableColorBox from './DraggableColorBox';
 // import ListItem from '@material-ui/core/ListItem';
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
@@ -62,6 +63,7 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         flexGrow: 1,
+        height:"calc(100vh - 64px)",
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -83,7 +85,7 @@ export default function NewPaletteForm(){
     const theme = useTheme();
     const[open, setOpen] = React.useState(false);
     const[curColor, setCurColor] = React.useState("teal");
-    const[colors, setColors] = React.useState(["purple","black"]);
+    const[colors, setColors] = React.useState(["purple","green"]);
     
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -159,12 +161,10 @@ export default function NewPaletteForm(){
                 })}
             >
                 <div className={classes.drawerHeader} />
-               <u>
+               
                 {colors.map(color =>(
-                    <li style={{backgroundColor:color}}>{color}</li>
-                    )
-                )}
-               </u>
+               <DraggableColorBox color={color} />
+               ))}
             </main>
     </div>
   );
