@@ -18,7 +18,17 @@ export default{
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
-        color: "white"
+        color: "white",
+        alignItems:"center",
+        "& a":{
+            color:"white",
+            textDecoration:"none",
+            border:"1px solid white",
+            padding:"0.7rem"
+        },
+        "& a:hover":{
+            cursor:"pointer"
+        }
     },
     palettes: {
         boxSizing: "border-box",
