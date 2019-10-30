@@ -82,7 +82,9 @@ export default function NewPaletteForm(){
     const classes = useStyles();
     const theme = useTheme();
     const[open, setOpen] = React.useState(false);
-
+    const[curColor, setCurColor] = React.useState("teal");
+    const[colors, setColors] = React.useState(["purple","black"]);
+    
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -90,7 +92,13 @@ export default function NewPaletteForm(){
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
+    const updateCurColor=(newColor)=>{
+        setCurColor(newColor.hex);
+        
+    }
+    const addNewColor = () =>{
+        setColors([...colors, curColor])
+    }
     return(
     <div className = { classes.root } >
             <CssBaseline />
@@ -136,9 +144,14 @@ export default function NewPaletteForm(){
                     <Button variant="contained" color="primary">Random Color</Button>
                 </div>
                 <ChromePicker
-                    color="purple"
-                    onChangeComplete={(newColor) => console.log(newColor)} />
-                <Button variant="contained" color="primary">Add Color</Button>
+                    color={curColor}
+                    onChangeComplete={updateCurColor} />
+                <Button 
+                    variant="contained" 
+                    color="primary"
+                    onClick={addNewColor}
+                    style={{backgroundColor:curColor}}> Add Color</Button>
+
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -146,7 +159,12 @@ export default function NewPaletteForm(){
                 })}
             >
                 <div className={classes.drawerHeader} />
-
+               <u>
+                {colors.map(color =>(
+                    <li style={{backgroundColor:color}}>{color}</li>
+                    )
+                )}
+               </u>
             </main>
     </div>
   );
