@@ -83,6 +83,7 @@ export default function NewPaletteForm(props){
     const[curColor, setCurColor] = useState("teal");
     const[colors, setColors] = useState([]);
     const[newName, setNewName] = useState('');
+    const[newPaletteName,setPaletteName] = useState('');
     
     //dont forget to return or it ll always show error
     useEffect(() => {
@@ -92,6 +93,13 @@ export default function NewPaletteForm(props){
             )
         })
     }, [colors]);
+    useEffect(() => {
+        ValidatorForm.addValidationRule('isPaletteNameUnique',value =>{
+           return props.palettes.every(
+                ({ paletteName }) =>paletteName.toLowerCase()!== value.toLowerCase()
+            )
+        })
+    }, [props.palettes]);
     //dont forget the curColor needs to be in the array that useEffect looks for changes
     useEffect(() => {
         ValidatorForm.addValidationRule('isColorUnique',value =>{
@@ -120,9 +128,13 @@ export default function NewPaletteForm(props){
     }
     const handleChange =(e) =>{
         setNewName(e.target.value)
+       
+    }
+    const handleChangePalette =(e) =>{
+        setPaletteName(e.target.value);
     }
     const handleSubmit = ()=>{
-        let newName ="New Test Palette"
+        let newName = newPaletteName;
         const newPalette ={
             paletteName:newName,
             colors:colors,
@@ -156,11 +168,19 @@ export default function NewPaletteForm(props){
                     <Typography variant="h6" noWrap>
                         Persistent drawer
                     </Typography>
+                    <ValidatorForm onSubmit={handleSubmit}>
+                        <TextValidator 
+                        label="Palette Name"
+                        value={newPaletteName}
+                        onChange={handleChangePalette}
+                        validators={["required","isPaletteNameUnique"]}
+                        errorMessages={["this field is required","Name already exists"]}/>
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={handleSubmit}
+                        type="submit"
                     >Save Palette</Button>
+                    </ValidatorForm>
                 </Toolbar>
             </AppBar>
             <Drawer
