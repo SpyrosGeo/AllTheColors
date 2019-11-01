@@ -18,16 +18,15 @@ npm install --save react react-copy-to-clipboard
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+once you are inside the folder run :
+```
+npm i
+```
+
+when the installation of dependecies is complete run:
 
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+npm start
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
