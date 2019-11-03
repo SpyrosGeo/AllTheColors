@@ -1,27 +1,22 @@
 import React,{ useState,useEffect } from 'react'
-// import { Link } from "react-router-dom";
 import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { arrayMove } from 'react-sortable-hoc';
-
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { ValidatorForm} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
+import ColorPickerForm from './ColorPickerForm';
+
 
 const drawerWidth = 350;
-
+  
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
@@ -90,10 +85,10 @@ export default function NewPaletteForm(props){
     const[curColor, setCurColor] = useState("teal");
     const[colors, setColors] = useState(props.palettes[0].colors);
     const[newName, setNewName] = useState('');
-    // const [newPaletteName, setPaletteName] = useState('');
-    
+   
     
     //dont forget to return or it ll always show error
+    // these validators seem to work for children components may move them later.
     useEffect(() => {
         ValidatorForm.addValidationRule('isColorNameUnique',value =>{
            return colors.every(
@@ -119,19 +114,12 @@ export default function NewPaletteForm(props){
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const updateCurColor=(newColor)=>{
-        setCurColor(newColor.hex);
-        
-    }
-    const addNewColor = () =>{
-        const newColor= {color:curColor,name:newName}
+    
+    const addNewColor = (newColor) =>{
         setNewName("");
         setColors([...colors,newColor])
     }
-    const handleChange =(e) =>{
-        setNewName(e.target.value)
-       
-    }
+    
     
     const handleSubmit = (newPaletteName)=>{
         
@@ -196,25 +184,10 @@ export default function NewPaletteForm(props){
                             onClick={addRandomColor}
                             disabled={paletteIsFull}>Random Color</Button>
                 </div>
-                <ChromePicker
-                    color={curColor}
-                    onChangeComplete={updateCurColor} />
-                <ValidatorForm onSubmit={addNewColor}>
-                    <TextValidator 
-                    value={newName}
-                    onChange={handleChange}
-                    validators={['required','isColorNameUnique','isColorUnique']}
-                        errorMessages={['this field is required', 'name needs to be unique', 'color needs to be unique']} />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    disabled={paletteIsFull}
-                    style={{ backgroundColor:paletteIsFull?"grey": curColor }}>
-                        {paletteIsFull ? "Palette Full":"Add Color"}
-                        </Button>
-                </ValidatorForm>
-                
+                <ColorPickerForm 
+                    paletteIsFull={paletteIsFull}
+                    addNewColor = {addNewColor}
+                />
             </Drawer>
             <main
                 className={clsx(classes.content, {
