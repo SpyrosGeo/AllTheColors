@@ -10,7 +10,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 export default function PaletteMetaForm(props) {
-    const { handleSubmit } = props;
+    const { handleSubmit,hideForm } = props;
     const [open, setOpen] = useState(true);
     const [newPaletteName, setPaletteName] = useState('');
 
@@ -25,9 +25,6 @@ export default function PaletteMetaForm(props) {
     const handleChangePalette = (e) => {
         setPaletteName(e.target.value);
     }
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
 
     const handleClose = () => {
         setOpen(false);
@@ -36,7 +33,12 @@ export default function PaletteMetaForm(props) {
     return (
         
         
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog
+                 open={open} 
+                 onClose={hideForm} 
+                 aria-labelledby="form-dialog-title"
+                 
+                 >
                 <DialogTitle id="form-dialog-title">Create a Palette</DialogTitle>
                 <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
                 <DialogContent>
@@ -57,7 +59,7 @@ export default function PaletteMetaForm(props) {
                     
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={hideForm} color="primary">
                         Cancel
           </Button>
                     <Button

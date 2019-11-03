@@ -18,6 +18,9 @@ import PaletteMetaForm from './PaletteMetaForm';
     const showForm = () =>{
         setFormShowing(true);
     }
+    const hideForm = () =>{
+        setFormShowing(false)
+    }
     return (
         <div className={classes.root}>
                 <CssBaseline />
@@ -44,9 +47,6 @@ import PaletteMetaForm from './PaletteMetaForm';
                     
                     </Toolbar>
                 <div className={classes.navBtns}>
-                    
-                   
-                   
                     <Link   
                         className={classes.link } 
                         to='/'>
@@ -68,6 +68,7 @@ import PaletteMetaForm from './PaletteMetaForm';
                 </AppBar>
                 {formShowing && (
             <PaletteMetaForm
+                hideForm ={hideForm}
                 handleSubmit={handleSubmit}
                 palettes={palettes} />)}
         </div>
