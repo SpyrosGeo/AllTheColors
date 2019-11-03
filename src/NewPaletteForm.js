@@ -1,4 +1,4 @@
-import React,{ useState,useEffect } from 'react'
+import React,{ useState} from 'react'
 import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Button } from '@material-ui/core';
 import { arrayMove } from 'react-sortable-hoc';
-import { ValidatorForm} from 'react-material-ui-form-validator';
+// import { ValidatorForm} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm';
 
@@ -89,22 +89,22 @@ export default function NewPaletteForm(props){
     
     //dont forget to return or it ll always show error
     // these validators seem to work for children components may move them later.
-    useEffect(() => {
-        ValidatorForm.addValidationRule('isColorNameUnique',value =>{
-           return colors.every(
-                ({ name }) =>name.toLowerCase()!== value.toLowerCase()
-            )
-        })
-    }, [colors]);
+    // useEffect(() => {
+    //     ValidatorForm.addValidationRule('isColorNameUnique',value =>{
+    //        return colors.every(
+    //             ({ name }) =>name.toLowerCase()!== value.toLowerCase()
+    //         )
+    //     })
+    // }, [colors]);
     
-    //dont forget the curColor needs to be in the array that useEffect looks for changes
-    useEffect(() => {
-        ValidatorForm.addValidationRule('isColorUnique',value =>{
-           return colors.every(
-                ({ color }) =>color !== curColor
-            )
-        })
-    }, [colors,curColor]);
+    // //dont forget the curColor needs to be in the array that useEffect looks for changes
+    // useEffect(() => {
+    //     ValidatorForm.addValidationRule('isColorUnique',value =>{
+    //        return colors.every(
+    //             ({ color }) =>color !== curColor
+    //         )
+    //     })
+    // }, [colors,curColor]);
 
     
     const handleDrawerOpen = () => {
@@ -187,6 +187,7 @@ export default function NewPaletteForm(props){
                 <ColorPickerForm 
                     paletteIsFull={paletteIsFull}
                     addNewColor = {addNewColor}
+                    colors={colors}
                 />
             </Drawer>
             <main

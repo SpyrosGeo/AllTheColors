@@ -1,16 +1,31 @@
 // import React from 'react';
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 function ColorPickerForm(props){
-    const {paletteIsFull,addNewColor} = props;
+    const {paletteIsFull,addNewColor,colors} = props;
     const [curColor, setCurColor] = useState("teal");
     const [newName, setNewName] = useState('');
 
+    useEffect(() => {
+        ValidatorForm.addValidationRule('isColorNameUnique', value => {
+            return colors.every(
+                ({ name }) => name.toLowerCase() !== value.toLowerCase()
+            )
+        })
+    }, [colors]);
 
+    //dont forget the curColor needs to be in the array that useEffect looks for changes
+    useEffect(() => {
+        ValidatorForm.addValidationRule('isColorUnique', value => {
+            return colors.every(
+                ({ color }) => color !== curColor
+            )
+        })
+    }, [colors, curColor]);
 
 
 
