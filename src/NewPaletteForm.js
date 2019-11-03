@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
         }),
         flexDirection:"row",
         justifyContent:"space-between",
+        alignItems:"center",
         height:"64px"
     },
     appBarShift: {
@@ -77,8 +78,15 @@ const useStyles = makeStyles(theme => ({
         }),
         marginLeft: 0,
     },
-    navBtn:{
+    navBtns:{
+        marginRight:"1rem",
+        "& a":{
+            textDecoration: "none"
+        }
 
+    },
+    navBtn:{
+        margin:"0.5rem",
     },
     container:{
         width:"90%",
@@ -106,7 +114,7 @@ export default function NewPaletteForm(props){
     const theme = useTheme();
     const[open, setOpen] = React.useState(false);
     const[colors, setColors] = useState(props.palettes[0].colors);
-    const[newName, setNewName] = useState('');
+    const[setNewName] = useState('');
    
     
     
@@ -188,6 +196,7 @@ export default function NewPaletteForm(props){
                         Design Palette
                 </Typography>
                 <div className={classes.buttons}>
+                    
                     <Button 
                         className={classes.button}
                         variant="contained" 
