@@ -26,6 +26,9 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        flexDirection:"row",
+        justifyContent:"space-between",
+        height:"64px"
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -71,7 +74,9 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
         marginLeft: 0,
-    },
+    },navBtn:{
+
+    }
 }));
 
 export default function NewPaletteForm(props){
@@ -82,30 +87,11 @@ export default function NewPaletteForm(props){
     const classes = useStyles();
     const theme = useTheme();
     const[open, setOpen] = React.useState(false);
-    const[curColor, setCurColor] = useState("teal");
     const[colors, setColors] = useState(props.palettes[0].colors);
     const[newName, setNewName] = useState('');
    
     
-    //dont forget to return or it ll always show error
-    // these validators seem to work for children components may move them later.
-    // useEffect(() => {
-    //     ValidatorForm.addValidationRule('isColorNameUnique',value =>{
-    //        return colors.every(
-    //             ({ name }) =>name.toLowerCase()!== value.toLowerCase()
-    //         )
-    //     })
-    // }, [colors]);
     
-    // //dont forget the curColor needs to be in the array that useEffect looks for changes
-    // useEffect(() => {
-    //     ValidatorForm.addValidationRule('isColorUnique',value =>{
-    //        return colors.every(
-    //             ({ color }) =>color !== curColor
-    //         )
-    //     })
-    // }, [colors,curColor]);
-
     
     const handleDrawerOpen = () => {
         setOpen(true);

@@ -11,7 +11,6 @@ import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
-
     function PaletteFormNav(props){
 
         const [newPaletteName, setPaletteName] = useState('');
@@ -32,7 +31,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
         const {classes,open,handleSubmit,handleDrawerOpen } = props;
     
     return (
-        <div>
+        <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
                     position="fixed"
@@ -52,29 +51,32 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap>
-                            Persistent drawer
+                            Create A Palette
                     </Typography>
-                        <ValidatorForm onSubmit={()=> handleSubmit(newPaletteName)}>
-                            <TextValidator
-                                label="Palette Name"
-                                value={newPaletteName}
-                                onChange={handleChangePalette}
-                                validators={["required", "isPaletteNameUnique"]}
-                                errorMessages={["this field is required", "Name already exists"]} />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                            >Save Palette</Button>
-                            <Link to='/'>
-                                <Button
-                                    variant="contained"
-                                    color="secondary">
-                                    Go Back
-                    </Button>
-                            </Link>
-                        </ValidatorForm>
+                    
                     </Toolbar>
+                <div className={classes.navBtn}>
+                    <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
+                        <TextValidator
+                            label="Palette Name"
+                            value={newPaletteName}
+                            onChange={handleChangePalette}
+                            validators={["required", "isPaletteNameUnique"]}
+                            errorMessages={["this field is required", "Name already exists"]} />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                        >Save Palette</Button>
+                    </ValidatorForm>
+                    <Link to='/'>
+                        <Button
+                            variant="contained"
+                            color="secondary">
+                            Go Back
+                            </Button>
+                    </Link>
+                </div>
                 </AppBar>
         </div>
     )
