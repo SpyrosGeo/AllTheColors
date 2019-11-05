@@ -5,10 +5,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button } from '@material-ui/core';
 import PaletteMetaForm from './PaletteMetaForm';
+import ColorizeIcon from '@material-ui/icons/Colorize';
 
 // styles come rom NewPaletteFormStyles.js and passed rom NewPalleteForm as classes prop.
     function PaletteFormNav(props){
@@ -32,7 +33,7 @@ import PaletteMetaForm from './PaletteMetaForm';
                     })}
                 >
                     <Toolbar>
-                        <IconButton
+                        <ColorizeIcon
                             color="inherit"
                             aria-label="open drawer"
                             onClick={handleDrawerOpen}
@@ -40,7 +41,7 @@ import PaletteMetaForm from './PaletteMetaForm';
                             className={clsx(classes.menuButton, open && classes.hide)}
                         >
                             <MenuIcon />
-                        </IconButton>
+                        </ColorizeIcon>
                         <Typography variant="h6" noWrap>
                             Create A Palette
                     </Typography>
