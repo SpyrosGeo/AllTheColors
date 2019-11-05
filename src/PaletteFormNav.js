@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Button } from '@material-ui/core';
 import PaletteMetaForm from './PaletteMetaForm';
 
-
+// styles come rom NewPaletteFormStyles.js and passed rom NewPalleteForm as classes prop.
     function PaletteFormNav(props){
     const [formShowing,setFormShowing]= useState(false)
     const {classes,open,handleSubmit,handleDrawerOpen,palettes } = props;

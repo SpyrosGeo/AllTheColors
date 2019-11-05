@@ -1,7 +1,7 @@
 import React,{ useState} from 'react'
 import PaletteFormNav from './PaletteFormNav';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {  useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -10,100 +10,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Button } from '@material-ui/core';
 import { arrayMove } from 'react-sortable-hoc';
-// import { ValidatorForm} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import ColorPickerForm from './ColorPickerForm';
+import useStyles from './styles/NewPaletteFormStyles';
 
 
-const drawerWidth = 350;
-  
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"center",
-        height:"64px"
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        display:"flex",
-        alignItems:"center"
-    },
-    drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
-    },
-    content: {
-        flexGrow: 1,
-        height:"calc(100vh - 64px)",
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
-    },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    },
-    navBtns:{
-        marginRight:"1rem",
-        "& a":{
-            textDecoration: "none"
-        }
-
-    },
-    navBtn:{
-        margin:"0.5rem",
-    },
-    container:{
-        width:"90%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center",
-        height:"100%"
-    },
-    buttons:{
-        width:"100%"
-    },
-    button:{
-        width:"50%"
-    }
-
-}));
 
 export default function NewPaletteForm(props){
      //instead of static defaultProps in a functinal component we use this     

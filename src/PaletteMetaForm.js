@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
-
+//it uses the NewPaletteFormStyles.js by passing classes from NewPaletteForm.
 
 export default function PaletteMetaForm(props) {
     const { handleSubmit,hideForm } = props;
