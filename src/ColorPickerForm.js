@@ -55,7 +55,7 @@ function ColorPickerForm(props){
                 className={classes.picker}
                 color={curColor}
                 onChangeComplete={updateCurColor} />
-            <ValidatorForm onSubmit={handleSumbit}>
+            <ValidatorForm onSubmit={handleSumbit} instantValidate={false}>
                 <TextValidator
                     className={classes.colorNameInput}
                     value={newName}
