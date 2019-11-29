@@ -9,9 +9,9 @@ function MiniPalette(props ){
 
     const deletePalette = (e)=>{    
         e.stopPropagation();
-        handleDelete(props.id)
+        openDialog(props.id)
     }
-    const { handleDelete,classes,paletteName,colors ,handleClick}= props;
+    const { openDialog,classes,paletteName,colors ,handleClick}= props;
     const miniColorBoxes= colors.map(color =>(
         <div key={color.name}className={classes.miniColor} style={{backgroundColor:color.color}}></div>
     ))
