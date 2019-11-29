@@ -141,7 +141,9 @@ export default function NewPaletteForm(props){
                     axis='xy'
                     colors={colors}
                     deleteColor={deleteColor}
-                    onSortEnd={onSortEnd}>
+                    onSortEnd={onSortEnd}
+                    distance={10}
+                    >
 
                     </DraggableColorList>
              
