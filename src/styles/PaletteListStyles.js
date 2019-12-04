@@ -18,7 +18,7 @@ export default{
     /* background by SVGBackgrounds.com */
         backgroundColor: "#57beff",
         backgroundImage: `url(${bg})`,
-        overflow:"scroll"
+        overflowY:"auto"
     },
     container: {
         width: "50%",
